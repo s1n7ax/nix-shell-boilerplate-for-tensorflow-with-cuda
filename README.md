@@ -6,3 +6,7 @@ tensorflow.
 Known issues:
 
 cuDNN fails due to ![tensorflow/#62075](https://github.com/tensorflow/tensorflow/issues/62075)
+
+## How to use
+
+- `cd` to repository and run `nix-shell`
