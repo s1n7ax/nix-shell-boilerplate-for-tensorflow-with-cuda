@@ -3,6 +3,41 @@
 nix-shell created for using tensorflow with cuda. This nix shell does NOT install
 tensorflow.
 
+## How to setup
+
+- Install Nvidia driver in NixOS
+
+```nix
+hardware.nvidia = {
+  modesetting.enable = true;
+  open = false;
+  nvidiaSettings = true;
+  package = config.boot.kernelPackages.nvidiaPackages.stable;
+};
+```
+
+- You should have a CUDA capable GPU
+
+- Create a virtual environment
+
+```bash
+virtualenv venv
+```
+
+- Switch to the virtual environment
+
+```bash
+source venv/bin/activate
+```
+
+- Install `tensorflow` nightly
+
+```bash
+# tensorflow is installing cuda & cudnn libraries
+# installing them in NixOS makes no difference
+pip install tensorflow[and-cuda] jupyter-lab jupyter-lsp jedi-language-server
+```
+
 ## Known issues
 
 GPU can be used but cuDNN fails due to ![tensorflow/#62075](https://github.com/tensorflow/tensorflow/issues/62075)
@@ -21,8 +56,3 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
 (venv)
 ```
-
-## How to use
-
-- `cd` to repository and run `nix-shell`
-- Install tensorflow with cuda
