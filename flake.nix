@@ -1,18 +1,11 @@
 {
   description = "A very basic flake";
 
-  inputs = { nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11"; };
+  inputs = { nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; };
 
-  outputs = { self, nixpkgs, ... }:
+  outputs = { nixpkgs, ... }:
     let
-
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-
-    in {
-
-      # packages.x86_64-linux.default = import ./shell.nix { inherit pkgs; };
-      devShells.x86_64-linux.default = import ./shell.nix { inherit pkgs; };
-
-    };
+      pkgs = nixpkgs.legacyPackages.${system};
+    in { devShells.${system}.default = import ./shell.nix { inherit pkgs; }; };
 }
