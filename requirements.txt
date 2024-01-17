@@ -1,0 +1,4 @@
+tensorflow[and-cuda]
+jupyterlab
+jupyterlab-lsp
+jedi-language-server

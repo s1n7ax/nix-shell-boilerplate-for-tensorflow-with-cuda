@@ -1,7 +1,6 @@
 # nix-shell-tensorflow-with-cuda
 
-nix-shell created for using tensorflow with cuda. This nix shell does NOT install
-tensorflow.
+Nix shell created for using tensorflow with CUDA.
 
 ## How to setup
 
@@ -16,27 +15,13 @@ hardware.nvidia = {
 };
 ```
 
-- You should have a CUDA capable GPU
+### Using direnv
 
-- Create a virtual environment
+- If you are using direnv and added the shell hook, the just `cd` to dir
 
-```bash
-virtualenv venv
-```
+### Manual
 
-- Switch to the virtual environment
-
-```bash
-source venv/bin/activate
-```
-
-- Install `tensorflow` nightly
-
-```bash
-# tensorflow is installing cuda & cudnn libraries
-# installing them in NixOS makes no difference
-pip install tensorflow[and-cuda] jupyter-lab jupyter-lsp jedi-language-server
-```
+- `cd` into the directory and run `nix-shell`
 
 ## Known issues
 
