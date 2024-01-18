@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ? import <nixpkgs> { }, ... }:
 with pkgs;
 let
   cclib = "${stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH";
@@ -9,7 +9,7 @@ in pkgs.mkShell {
   buildInputs = with pkgs; [
     virtualenv
     wget
-    (python3.withPackages (py-packages: with py-packages; [ pip jupyterlab ]))
+    (python310.withPackages (py-packages: with py-packages; [ pip ]))
   ];
 
   shellHook = ''
@@ -26,7 +26,7 @@ in pkgs.mkShell {
     source venv/bin/activate
 
     if [ $NEW_ENV -eq 1 ]; then
-      pip install -I --require-virtualenv -r requirements.txt
+      pip install --require-virtualenv -r requirements.txt
     fi
   '';
 }

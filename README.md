@@ -1,4 +1,4 @@
-# nix-shell-tensorflow-with-cuda
+# nix-shell-tensorflow-with-cuda (THIS DOES NOT WORK)
 
 Nix shell created for using tensorflow with CUDA.
 
